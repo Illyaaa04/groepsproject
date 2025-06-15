@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Documentbeheer{% endblock %}
+{% block content %}
+<h2>Documentbeheer</h2>
+<form method="POST" enctype="multipart/form-data">
+    <input type="file" name="document" required>
+    <button type="submit">Upload</button>
+</form>
+
+<ul style="list-style-type: none; padding: 0; margin-top: 20px;">
+{% for doc in documents %}
+    <li style="background-color: {{ loop.index0 % 2 == 0 and '#f9f9f9' or '#ffffff' }}; padding: 10px; margin-bottom: 5px; border-radius: 4px;">
+        <a href="{{ url_for('static', filename='uploads/' + doc) }}">{{ doc }}</a>
+        - <a href="{{ url_for('documents.delete_document', filename=doc) }}" style="color: red;">Verwijderen</a>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<h2>Login</h2>
+<form method="POST">
+    <!-- Gebruikersnaam -->
+    <label for="username">Gebruikersnaam</label>
+    <input type="text" id="username" name="username" placeholder="Gebruikersnaam" required><br>
+
+    <!-- Wachtwoord -->
+    <label for="password">Wachtwoord</label>
+    <div class="password-container">
+        <input type="password" id="password" name="password" placeholder="Wachtwoord" required>
+        <button type="button" onclick="togglePassword()">Toon wachtwoord</button>
+    </div>
+
+    <br>
+    <button type="submit">Inloggen</button>
+</form>
+
+<p>Nog geen account? <a href="{{ url_for('auth.register') }}">Registreer hier</a>.</p>
+
+
+<script>
+function togglePassword() {
+    const pwField = document.getElementById('password');
+    const btn = event.target;
+    if (pwField.type === 'password') {
+        pwField.type = 'text';
+        btn.textContent = 'Verberg wachtwoord';
+    } else {
+        pwField.type = 'password';
+        btn.textContent = 'Toon wachtwoord';
+    }
+}
+</script>
+{% endblock %}

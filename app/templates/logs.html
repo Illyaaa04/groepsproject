@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Logs{% endblock %}
+{% block content %}
+<h2>Logs</h2>
+<ul style="list-style-type: none; padding: 0;">
+{% for log in logs %}
+    <li style="background-color: {{ loop.index0 % 2 == 0 and '#f9f9f9' or '#ffffff' }}; padding: 10px; margin-bottom: 5px; border-radius: 4px;">
+        <strong>{{ log.timestamp }}:</strong> {{ log.message }}
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

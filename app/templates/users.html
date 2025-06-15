@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Gebruikersbeheer{% endblock %}
+{% block content %}
+<h2>Gebruikersbeheer</h2>
+<table style="width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr style="background-color: #4CAF50; color: white;">
+            <th>ID</th>
+            <th>Gebruikersnaam</th>
+            <th>Is Admin</th>
+            <th>Acties</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+    <tr style="background-color: {{ loop.index0 % 2 == 0 and '#f9f9f9' or '#ffffff' }};">
+        <td style="border: 1px solid #ddd; padding: 8px;">{{ user.id }}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">{{ user.username }}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">{{ 'Ja' if user.is_admin else 'Nee' }}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">
+            {% if not user.is_admin %}
+                <a href="{{ url_for('admin.make_admin', user_id=user.id) }}">Maak Admin</a>
+            {% endif %}
+            <a href="{{ url_for('admin.delete_user', user_id=user.id) }}" style="color: red;">Verwijder</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

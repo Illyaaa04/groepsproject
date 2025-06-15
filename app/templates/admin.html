@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Admin Paneel{% endblock %}
+{% block content %}
+<h2>Admin Paneel</h2>
+<p>Welkom, {{ current_user.username }}!</p>
+
+<ul style="list-style-type: none; padding: 0; margin-top: 20px;">
+    <li style="background-color: #f9f9f9; padding: 10px; margin-bottom: 5px; border-radius: 4px;">
+        <a href="{{ url_for('admin.logs') }}">Bekijk logs</a>
+    </li>
+    <li style="background-color: #ffffff; padding: 10px; margin-bottom: 5px; border-radius: 4px;">
+        <a href="{{ url_for('admin.users') }}">Gebruikersbeheer</a>
+    </li>
+    <li style="background-color: #f9f9f9; padding: 10px; margin-bottom: 5px; border-radius: 4px;">
+        <a href="{{ url_for('admin.admin_documents') }}">Documentbeheer</a>
+    </li>
+    <li style="background-color: #ffffff; padding: 10px; margin-bottom: 5px; border-radius: 4px;">
+        <a href="{{ url_for('admin.reset_database') }}" style="color: red;">Reset Database</a>
+    </li>
+</ul>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Documentbeheer{% endblock %}
+{% block content %}
+<h2>Documentbeheer</h2>
+<ul style="list-style-type: none; padding: 0; margin-top: 20px;">
+{% for doc in documents %}
+    <li style="background-color: {{ loop.index0 % 2 == 0 and '#f9f9f9' or '#ffffff' }}; padding: 10px; margin-bottom: 5px; border-radius: 4px;">
+        <strong>{{ doc.filename }}</strong> ({{ doc.uploaded_at.strftime('%Y-%m-%d %H:%M') if doc.uploaded_at else 'geen datum' }})
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}
